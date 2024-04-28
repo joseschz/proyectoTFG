@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-  $DBHost="localhost:3306";
+   $DBHost="localhost:3306";
    $DBUser="root";
-   $DBPass="";
+   $DBPass="root";
    $DB="eventos";
    $id_conexion=-1;
 

@@ -1,106 +1,63 @@
-<?php
-require 'funciones.php';
-if(isset($_SESSION["id"])){
-  $id = $_SESSION["id"];
-  $consulta="SELECT * FROM usuarios WHERE id = $id";
-  $resultado=ejecuta_SQL($consulta);
-  $matriz = $resultado->fetchAll();
-  foreach ($matriz as $myrow) {
-    $user=$myrow[3];
-    }
-  
-}
-else{
-    header("Location: index.php");
-}
+<?php include('header.php'); ?>
+    
+    <div class="contact-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="contact-form-right">
+                        <h2>PONTE EN CONTACTO</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.</p>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="subject" name="name" placeholder="Subject" required data-error="Please enter your Subject">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="submit-button text-center">
+                                        <button class="btn hvr-hover" id="submit" type="submit">Enviar Mensaje</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+				<div class="col-lg-4 col-sm-12">
+                    <div class="contact-info-left">
+                        <h2>INFORMACIÓN DE CONTACTO</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate. </p>
+                        <ul>
+                            <li>
+                                <p><i class="fas fa-phone-square"></i>Teléfono: <a href="tel:652652652">652652652</a></p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Contact Page</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/contacto.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head> 
-	
-      
-      <body>
-		<!--BARRA DE NAVEGACION-->
-		
-		<nav class="navbar1">
-			<div class="navbar1-container">
-				<img src="ficheros/images/logo.png" alt="Logo de la empresa" class="navbar1-logo">
-				<ul class="navbar1-list" align="center">
-					<li class="navbar1-item"><a href="#" class="navbar1-link">Inicio</a></li>
-					<li class="navbar1-item"><a href="#" class="navbar1-link">Servicios</a></li>
-					<li class="navbar1-item"><a href="#" class="navbar1-link">Portafolio</a></li>
-					
-                    
-                    <!-- Si existe la sesion,mostrar el boton de logout-->
-                    <?php if(isset($_SESSION['id'])){?>
-                        <li class="navbar1-item"><input type="button" onclick="submitDataLogout();" class="glyphicon glyphicon-log-out" VALUE="Logout"></input></li>
-                        
-                    <?php } ?>
-                </ul>
-			</div>
-		</nav>
-		
-		
-		<!-- CONTENIDO-->
-        
-        <div class="thm-container">
-         <div class="row">
-             <div class="col-md-8">
-                 <div class="contact-form-content">
-                     <div class="title">
-                         <span>Contacta con nosotros</span>
-                         <h2>Enviar un Mensaje</h2>
-                     </div><!-- /.title -->
-                     <form action="" class="contact-form" novalidate="novalidate">
-                         <input type="text" name="name" placeholder="Nombre Completo">
-                         <input type="text" name="email" placeholder="Email completo">
-                         <textarea name="message" placeholder="Escribe aquí tu mensaje"></textarea>
-                         <button type="submit" class="thm-btn yellow-bg">Enviar</button>
-                         <div class="form-result"></div><!-- /.form-result -->
-                     </form>
-                 </div><!-- /.contact-form-content -->
-             </div><!-- /.col-md-8 -->
-             <div class="col-md-4">
-                 <div class="contact-info text-center">
-                     <div class="title text-center">
-                        <span>Info de contacto</span>
-                        <h2>Detalles</h2>
-                     </div><!-- /.title -->
-                     <div class="single-contact-info">
-                         <h4>Email</h4>
-                         <p>needhelp@printify.com <br> inquiry@printify.com</p>
-                     </div><!-- /.single-contact-info -->
-                     <div class="single-contact-info">
-                         <h4>Redes Sociales</h4>
-                         <div class="social">
-                            <a href="https://www.instagram.com/dulces.y.eventos/" class="fab fa-instagram hvr-pulse" target="blank"></a><!--  
-                                
-                             
-                             --><a href="#" class="fab fa-facebook-f hvr-pulse"></a><!--  
-                             --><a href="#" class="fab fa-twitter hvr-pulse"></a>
-                        </div><!-- /.social -->
-                     </div><!-- /.single-contact-info -->
-                 </div><!-- /.contact-info -->
-             </div><!-- /.col-md-4 -->
-         </div><!-- /.row -->
-     </div>
-        
-<?php require 'script.php'; ?>
-      </body>
-	  </html>
+<?php include('footer.php'); ?>
