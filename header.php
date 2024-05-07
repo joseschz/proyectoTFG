@@ -1,3 +1,5 @@
+<?php require_once("php/anadirproductocarro.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
@@ -20,6 +22,8 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <link href="js/sweetalert2.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -68,7 +72,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.php"><img src="images/logo.png" class="logo" alt="" width="125px" height="125px"></a>
+                    <a class="navbar-brand" href="index.php"><img src="images/logo.png" class="logo" alt="" width="95px" height="95px"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -79,14 +83,13 @@
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Tienda</a>
                             <ul class="dropdown-menu">
 								<li><a href="tienda.php">Nuestros Productos</a></li>
-								<li><a href="detalleproducto.php">Detalle de Productos</a></li>
                                 <li><a href="carrito.php">Carrito</a></li>
                                 <li><a href="checkout.php">Finalizar Compra</a></li>
                                 <li><a href="perfil.php">Mi Cuenta</a></li>
                                
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="galeria.php">Gallería</a></li>
+                        <li class="nav-item"><a class="nav-link" href="galeria.php">Galería</a></li>
                         <li class="nav-item"><a class="nav-link" href="contacto.php">Contactanos</a></li>
                     </ul>
                 </div>
@@ -97,13 +100,15 @@
                         <li class="side-menu">
 							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
-								<span class="badge">3</span>
-								<p>Mi Carrito</p>
+                                <!--Bibliografia2  https://www.youtube.com/watch?v=rqYhZGskLfI&list=PLSuKjujFoGJ0XF_Gv0VpiTHxAtO7LL8jl&index=12 -->
+								<span class="badge" id="contadorCarrito"><?php  echo(empty($_SESSION['carro'])) ? 0 : count($_SESSION['carro']) ?></span>
+								<p>Mi Carrito</p> 
 							</a>
 						</li>
                     </ul>
                 </div>
             </div>
+            
           <!-- Carrito desplegable derecha -->
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>

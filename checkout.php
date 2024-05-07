@@ -1,4 +1,7 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); require_once("script.php"); require_once("funciones.php");
+
+?>
+
 <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -18,129 +21,126 @@
     <!-- Start Cart  -->
     <div class="cart-box-main">
         <div class="container">
-            <div class="row new-account-login">
+            <?php
+            //obtengo email de la cookie cuando inicia sesion 
+            if(isset($_COOKIE['email'])) {
+                $email = $_COOKIE['email'];
+                //obtengo nombre y apellidos de la base de datos para rellenarlo en los campos input
+                       $consulta ="SELECT * FROM usuarios WHERE email = '$email'";
+                       $resultado = ejecuta_SQL($consulta);
+                       foreach ($resultado as $row) {
+                           $nombre = $row['nombre'];
+                           $apellido1 = $row['Primer_Apellido'];
+                           $apellido2 = $row['Segundo_Apellido'];
+                           $email = $row['email'];
+                           
+                       } 
+                       
+                    } else{
+            ?>
+        <div class="row new-account-login">
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="title-left">
-                        <h3>Account Login</h3>
+                        <h3>Inicio de sesión de la cuenta</h3>
                     </div>
-                    <h5><a data-toggle="collapse" href="#formLogin" role="button" aria-expanded="false">Click here to Login</a></h5>
+                    <h5><a data-toggle="collapse" href="#formLogin" role="button" aria-expanded="false">Click aquí para iniciar sesión</a></h5>
                     <form class="mt-3 collapse review-form-box" id="formLogin">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="InputEmail" class="mb-0">Email Address</label>
-                                <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"> </div>
+                                <label for="InputEmail" class="mb-0">Email</label>
+                                <input type="email" class="form-control" id="emaillogin" placeholder="Introduce Email" > </div>
                             <div class="form-group col-md-6">
-                                <label for="InputPassword" class="mb-0">Password</label>
-                                <input type="password" class="form-control" id="InputPassword" placeholder="Password"> </div>
+                                <label for="InputPassword" class="mb-0">Contraseña</label>
+                                <input type="password" class="form-control" id="passwordlogin" placeholder="Contraseña"> </div>
                         </div>
-                        <button type="submit" class="btn hvr-hover">Login</button>
+                        <input type="button" class="btn hvr-hover" id="btnLogin" >Iniciar Sesión</input>
                     </form>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="title-left">
-                        <h3>Create New Account</h3>
+                        <h3>Crear Nueva Cuenta</h3>
                     </div>
-                    <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false">Click here to Register</a></h5>
-                    <form class="mt-3 collapse review-form-box" id="formRegister">
+                    <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false">Click aquí para Registrarte</a></h5>
+                   <form autocomplete="off" id="formRegister">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="InputName" class="mb-0">First Name</label>
-                                <input type="text" class="form-control" id="InputName" placeholder="First Name"> </div>
+                                <label for="name" class="mb-0">Nombre</label>
+                                <input type="text" class="form-control" id="nameregister" placeholder="Nombre" > </div>
                             <div class="form-group col-md-6">
-                                <label for="InputLastname" class="mb-0">Last Name</label>
-                                <input type="text" class="form-control" id="InputLastname" placeholder="Last Name"> </div>
+                                <label for="Firstname" class="mb-0">Primer Apellido</label>
+                                <input type="text" class="form-control" id="Firstnameregister" placeholder="Primer Apellido"> </div>
                             <div class="form-group col-md-6">
-                                <label for="InputEmail1" class="mb-0">Email Address</label>
-                                <input type="email" class="form-control" id="InputEmail1" placeholder="Enter Email"> </div>
+                                <label for="Lastname" class="mb-0">Segundo Apellido</label>
+                                <input type="text" class="form-control" id="Lastnameregister" placeholder="Segundo Apellido"> </div>
                             <div class="form-group col-md-6">
-                                <label for="InputPassword1" class="mb-0">Password</label>
-                                <input type="password" class="form-control" id="InputPassword1" placeholder="Password"> </div>
+                                <label for="InputEmail1" class="mb-0">Email</label>
+                                <input type="email" class="form-control" id="emailregister" placeholder="Introduce Email"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="InputPassword1" class="mb-0">Contraseña</label>
+                                <input type="password" class="form-control" id="passwordregister" placeholder="Contraseña"> </div>
                         </div>
-                        <button type="submit" class="btn hvr-hover">Register</button>
+                        <input type="button" id="btnRegistrar"class="btn login_btn" VALUE="Aceptar">
                     </form>
                 </div>
             </div>
+            <?php } ?>
             <div class="row">
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="checkout-address">
                         <div class="title-left">
-                            <h3>Billing address</h3>
+                            <h3>Dirección de facturación</h3>
                         </div>
                         <form class="needs-validation" novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="firstName">First name *</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                                    <label for="firstName">Primer Apellido *</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo$apellido1;?>" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="lastName">Last name *</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                    <label for="lastName">Segundo Apellido *</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value="<?php echo$apellido2;?>" required>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="username">Username *</label>
+                                <label for="name">Nombre *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="username" placeholder="" required>
-                                    <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+                                    <input type="text" class="form-control" id="name" placeholder="" value="<?php echo$nombre;?>" required >
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="email">Email Address *</label>
-                                <input type="email" class="form-control" id="email" placeholder="">
-                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                                <label for="email">Email *</label>
+                                <input type="email" class="form-control" id="loginemail" placeholder="" value="<?php echo$email;?>">
                             </div>
                             <div class="mb-3">
-                                <label for="address">Address *</label>
-                                <input type="text" class="form-control" id="address" placeholder="" required>
-                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                                <label for="address">Dirección *</label>
+                                <input type="text" class="form-control" id="address" placeholder="" value="" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="address2">Address 2 *</label>
-                                <input type="text" class="form-control" id="address2" placeholder=""> </div>
+                            
                             <div class="row">
                                 <div class="col-md-5 mb-3">
-                                    <label for="country">Country *</label>
+                                    <label for="country">País *</label>
                                     <select class="wide w-100" id="country">
-									<option value="Choose..." data-display="Select">Choose...</option>
-									<option value="United States">United States</option>
+									
+									<option value="España">España</option>
 								</select>
-                                    <div class="invalid-feedback"> Please select a valid country. </div>
+                                    
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="state">State *</label>
-                                    <select class="wide w-100" id="state">
-									<option data-display="Select">Choose...</option>
-									<option>California</option>
-								</select>
-                                    <div class="invalid-feedback"> Please provide a valid state. </div>
-                                </div>
+                                
                                 <div class="col-md-3 mb-3">
-                                    <label for="zip">Zip *</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                                    <div class="invalid-feedback"> Zip code required. </div>
+                                    <label for="cp">CP *</label>
+                                    <input type="text" class="form-control" id="cp" placeholder="" required>
                                 </div>
                             </div>
                             <hr class="mb-4">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="same-address">
-                                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="save-info">
-                                <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                            </div>
-                            <hr class="mb-4">
-                            <div class="title"> <span>Payment</span> </div>
+                            <div class="title"> <span>Pago</span> </div>
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
                                     <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="credit">Credit card</label>
+                                    <label class="custom-control-label" for="credit">Tarjeta de credito</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="debit">Debit card</label>
+                                    <label class="custom-control-label" for="debit">Tarjeta de debito</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
@@ -149,35 +149,29 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="cc-name">Name on card</label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder="" required> <small class="text-muted">Full name as displayed on card</small>
-                                    <div class="invalid-feedback"> Name on card is required </div>
+                                    <label for="cc-name">Nombre de tarjeta</label>
+                                    <input type="text" class="form-control" id="cc-name" placeholder="" required> <small class="text-muted">Nombre completo como se muestra en la tarjeta.</small>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="cc-number">Credit card number</label>
+                                    <label for="cc-number">Número de la tarjeta</label>
                                     <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                    <div class="invalid-feedback"> Credit card number is required </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">Expiration</label>
+                                    <label for="cc-expiration">Expiración</label>
                                     <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                                    <div class="invalid-feedback"> Expiration date required </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="cc-expiration">CVV</label>
                                     <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                    <div class="invalid-feedback"> Security code required </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="payment-icon">
                                         <ul>
                                             <li><img class="img-fluid" src="images/payment-icon/1.png" alt=""></li>
                                             <li><img class="img-fluid" src="images/payment-icon/2.png" alt=""></li>
-                                            <li><img class="img-fluid" src="images/payment-icon/3.png" alt=""></li>
                                             <li><img class="img-fluid" src="images/payment-icon/5.png" alt=""></li>
-                                            <li><img class="img-fluid" src="images/payment-icon/7.png" alt=""></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -190,82 +184,125 @@
                         <div class="col-md-12 col-lg-12">
                             <div class="shipping-method-box">
                                 <div class="title-left">
-                                    <h3>Shipping Method</h3>
+                                    <h3>Método de Compra</h3>
                                 </div>
                                 <div class="mb-4">
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
-                                        <label class="custom-control-label" for="shippingOption1">Standard Delivery</label> <span class="float-right font-weight-bold">FREE</span> </div>
-                                    <div class="ml-4 mb-2 small">(3-7 business days)</div>
+                                        <label class="custom-control-label" for="shippingOption1">Envío estandar</label> <span class="float-right font-weight-bold">Gratis</span> </div>
+                                    <div class="ml-4 mb-2 small">(3-7 días laborales)</div>
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption2">Express Delivery</label> <span class="float-right font-weight-bold">$10.00</span> </div>
-                                    <div class="ml-4 mb-2 small">(2-4 business days)</div>
+                                        <label class="custom-control-label" for="shippingOption2">SEUR</label> <span class="float-right font-weight-bold">5.00€</span> </div>
+                                    <div class="ml-4 mb-2 small">(2-4 días laborales)</div>
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">$20.00</span> </div>
+                                        <label class="custom-control-label" for="shippingOption3">Correo Express</label> <span class="float-right font-weight-bold">7.50€</span> </div>
+                                        <div class="ml-4 mb-2 small">(1-2 días laborales)</div>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12">
                             <div class="odr-box">
                                 <div class="title-left">
-                                    <h3>Shopping cart</h3>
+                                    <h3>Carrito de la compra</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $80.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $80.00</div>
-                                        </div>
+<?php 
+echo '
+<div class="cart-box-main">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive"style="height: 400px" >
+                    <table class="table">
+                        
+                        <tbody>';
+
+$total = 0;
+foreach ($_SESSION['carro'] as $indice => $producto){
+    // desde ajax cambio el display a none cuando se elimina el elemento
+    echo '
+                            
+                            <tr data-id="'.openssl_encrypt($producto['id'],COD,KEY).'"> 
+                                <td class="thumbnail-img">
+                                        <img class="img-fluid" src="images/'.$producto['imagen'].'" alt="" />
+                                </td>
+                                <td class="name-pr">
+                                <p><strong>'.$producto['nombre'].'</strong></p>
+                                </td>
+                                <td class="price-pr">
+                                    <p>'.$producto['precio'].'</p>
+                                </td>
+                                <td class="quantity-box">'.$producto['cantidad'].'</td>
+                                <td class="total-pr">
+                                    <p>'.number_format($producto['precio'] * $producto['cantidad'], 2).'</p>
+                                </td>
+                               
+                            </tr>';
+                            $total += $producto['precio'] * $producto['cantidad']; 
+}
+                    echo '
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $60.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $60.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $40.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $40.00</div>
+                                </div>
+                            </div> </div>';
+    ?>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="odr-box">
+                                <div class="title-left">
+                                    <h3>¿Tienes un cupón de descuento?</h3>
+                                </div>
+                                <div class="row my-5">
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="coupon-box">
+                                            <div class="input-group input-group-sm">
+                                                <input class="form-control" placeholder="Introduce tu cupón" aria-label="Cupon" type="text">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-theme" type="button">Aplicar Cupón</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-12 col-lg-12">
                             <div class="order-box">
                                 <div class="title-left">
-                                    <h3>Your order</h3>
+                                    <h3>Tu Pedido</h3>
                                 </div>
                                 <div class="d-flex">
-                                    <div class="font-weight-bold">Product</div>
+                                    <div class="font-weight-bold">Producto</div>
                                     <div class="ml-auto font-weight-bold">Total</div>
                                 </div>
                                 <hr class="my-1">
+                                
                                 <div class="d-flex">
-                                    <h4>Sub Total</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 440 </div>
-                                </div>
-                                <div class="d-flex">
-                                    <h4>Discount</h4>
+                                    <h4>Montaje</h4>
                                     <div class="ml-auto font-weight-bold"> $ 40 </div>
                                 </div>
                                 <hr class="my-1">
                                 <div class="d-flex">
-                                    <h4>Coupon Discount</h4>
+                                    <h4>Cupón de Descuento</h4>
                                     <div class="ml-auto font-weight-bold"> $ 10 </div>
                                 </div>
+                                <hr class="my-1">
                                 <div class="d-flex">
-                                    <h4>Tax</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 2 </div>
-                                </div>
-                                <div class="d-flex">
-                                    <h4>Shipping Cost</h4>
+                                    <h4>Envío</h4>
                                     <div class="ml-auto font-weight-bold"> Free </div>
                                 </div>
                                 <hr>
                                 <div class="d-flex gr-total">
-                                    <h5>Grand Total</h5>
-                                    <div class="ml-auto h5"> $ 388 </div>
+                                    <h5>Precio Total:</h5>
+                                    <div class="ml-auto h5"><?php echo "$total"; ?> €</div>
                                 </div>
                                 <hr> </div>
                         </div>

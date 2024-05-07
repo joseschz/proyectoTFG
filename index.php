@@ -114,7 +114,7 @@
                         <div class="box-img-hover">
                             <img src="images/globos2.jpeg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
-                                <a class="cart" href="#">Añadir al carrito</a>
+                                <a class="cart" href="tienda.php">Ver productos</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -132,7 +132,7 @@
                             </div>
                             <img src="images/arco2.jpeg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
-                                <a class="cart" href="#">Añadir al carrito</a>
+                            <a class="cart" href="tienda.php">Ver productos</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -150,7 +150,7 @@
                             </div>
                             <img src="images/globos1.jpeg" class="img-fluid">
                             <div class="mask-icon">
-                                <a class="cart" href="#">Añadir al carrito</a>
+                            <a class="cart" href="tienda.php">Ver productos</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -173,7 +173,7 @@
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul> -->
-                                <a class="cart" href="#">Añadir al carrito</a>
+                                <a class="cart" href="tienda.php">Ver productos</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -199,7 +199,7 @@
                 <div class="col-md-6 col-lg-4 col-xl-4">
                     <div class="blog-box">
                         <div class="blog-img">
-                            <img class="img-fluid" src="images/publicación.jpeg" alt="" />
+                            <img class="img-fluid" src="images/publicacion.jpeg" alt="" />
                         </div>
                         <div class="blog-content">
                             <div class="title-blog">
