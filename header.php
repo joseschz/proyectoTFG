@@ -1,4 +1,5 @@
-<?php require_once("php/anadirproductocarro.php");
+<?php 
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,7 +13,6 @@
     <meta name="author" content="">
 
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -36,28 +36,31 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user s_color"></i> Mi Cuenta</a></li>
-                            <li><a href="#"><i class="fas fa-location-arrow"></i> Nuestra localización</a></li>
-                            <li><a href="#"><i class="fas fa-headset"></i> Contactanos</a></li>
+                        <?php if(!empty($_COOKIE['email'])){echo'<li><a href="perfil.php"><i class="fa fa-user s_color"></i> Mi Cuenta</a></li>';} ?>
+                            <li><a href="sobrenosotros.php"><i class="fas fa-location-arrow"></i> Nuestra localización</a></li>
+                            <li><a href="contacto.php"><i class="fas fa-headset"></i> Contáctanos</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="login-box">
-						<select id="basic" class="selectpicker show-tick form-control" data-placeholder="Iniciar Sesión">
-							<option>Registrate</option>
-							<option>Iniciar Sesión</option>
-						</select>
-					</div>
+                <?php if(!empty($_COOKIE['email'])){echo'<div class="login-box">
+                    <button id="logoutButton" class="btn btn-primary" type="button" onclick="location.href=\'logout.php\'">
+                        <span class="fas fa-sign-out-alt d-md-none"></span>
+                        <span class="d-none d-md-inline">Cerrar Sesión</span>
+                    </button>
+                </div>';} ?>
+
+
                     <div class="text-slid-box">
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> 15% Decoración 
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 15% Pack Centro de Mesa
-                                </li>
+                           <?php require_once('funciones.php'); $consulta="SELECT cupones.Porcentaje, cupones.Codigo, productos.Nombre
+                                        FROM cupones INNER JOIN	productos ON cupones.ID_Producto = productos.ID_Producto"; 
+                            $resultado = ejecuta_SQL($consulta);
+                            foreach($resultado as $row) {
+                                echo "<li> <i class='fab fa-opencart'></i>".$row['Porcentaje'] . " % Codigo " . $row['Codigo'] . " para el Producto " . $row['Nombre'] . "</li>";
+                            }?>   
+                            
                             </ul>
                         </div>
                     </div>
@@ -80,24 +83,22 @@
                         <li class="nav-item active"><a class="nav-link" href="index.php">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="sobrenosotros.php">Sobre nosotros</a></li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Tienda</a>
+                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">Tienda</a>
                             <ul class="dropdown-menu">
 								<li><a href="tienda.php">Nuestros Productos</a></li>
                                 <li><a href="carrito.php">Carrito</a></li>
-                                <li><a href="checkout.php">Finalizar Compra</a></li>
-                                <li><a href="perfil.php">Mi Cuenta</a></li>
+                                <?php if(!empty($_COOKIE['email'])){echo'<li><a href="perfil.php">Mi Cuenta</a></li>';} ?>
                                
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="galeria.php">Galería</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contacto.php">Contactanos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contacto.php">Contáctanos</a></li>
                     </ul>
                 </div>
 
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu">
+                        <li class="side-menu" >
 							<a href="#">
 								<i class="fa fa-shopping-bag"></i>
                                 <!--Bibliografia2  https://www.youtube.com/watch?v=rqYhZGskLfI&list=PLSuKjujFoGJ0XF_Gv0VpiTHxAtO7LL8jl&index=12 -->
@@ -109,30 +110,29 @@
                 </div>
             </div>
             
+
+
           <!-- Carrito desplegable derecha -->
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
                 <li class="cart-box">
                     <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Delica omtantur </a></h6>
-                            <p>1x - <span class="price">$80.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Omnes ocurreret</a></h6>
-                            <p>1x - <span class="price">$60.00</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">Agam facilisis</a></h6>
-                            <p>1x - <span class="price">$40.00</span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
-                            <span class="float-right"><strong>Total</strong>: $180.00</span>
-                        </li>
+                    <?php 
+                    
+                    if(!empty($_SESSION['carro'])){
+                        $total = 0;
+                        foreach ($_SESSION['carro'] as $indice => $producto){
+                            echo '<li>
+                                    <img src="images/'.$producto['imagen'].'" class="cart-thumb" alt="" />
+                                    <h6><a href="#">'.$producto['nombre'].'</a></h6>
+                                    <p>'.$producto['cantidad'].'x - <span class="price">'.$producto['precio'].'€</span></p>
+                                </li>';
+                        }
+
+                    }
+                
+?>
+
                     </ul>
                 </li>
             </div>

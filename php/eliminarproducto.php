@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 unset($_SESSION['carro'][$indice]); //elimina el elemento del carro
                 $numero_productos = count($_SESSION['carro']);
                 $totaleliminado = 0;
-                $totaleliminado = $totaleliminado -($elemento['precio'] * $elemento['cantidad']); 
+                $totaleliminado = $totaleliminado - ($elemento['precio'] * $elemento['cantidad']); 
                 
         echo "$numero_productos";  //Respondiendo a la solicitud AJAX
             }

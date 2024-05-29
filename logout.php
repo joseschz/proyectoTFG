@@ -1,8 +1,9 @@
 <?php
-require 'funciones.php';
-$_SESSION = [];
-session_unset();
+require_once('funciones.php');
+setcookie('email', '', time() - 3600, '/');
 session_destroy();
-//ajax me devuelve aquí y me muestra el siguiente contenido: 
+session_abort();
+unset($_SESSION['carro']);
+header('Location: index.php');
 echo "Logout Successful";
 ?>

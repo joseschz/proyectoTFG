@@ -1,5 +1,6 @@
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
+
 <script src = "js/sweetalert2.min.js">
 </script>
 
@@ -56,7 +57,17 @@ function login(){
         success: function(response) {
             console.log(response);
             //si el validador de login.php (echo) devuelve el mensaje siguiente el usuario ya existe
-            if (response.includes("Hubo un error en email o contraseña")) {
+            if (response.includes("Admin")) {
+            Swal.fire({
+               icon: 'success',
+               title: 'Admin',
+               showConfirmButton: false,
+               timer: 1500
+             }).then(() => {
+               window.location.href = "admin/indexadmin.php"; 
+          });
+          }
+            else if (response.includes("Hubo un error en email o contraseña")) {
             Swal.fire({
                icon: 'error',
                title: 'Email o contraseña incorrecta!',
@@ -78,8 +89,9 @@ function login(){
                title: 'Login exitoso!',
                showConfirmButton: false,
                timer: 1500
-           });
-           window.location.href = "checkout.php";
+           }).then(() => {
+               window.location.href = "checkout.php"; 
+          });
           }
         }
     });
@@ -147,5 +159,158 @@ function eliminarcarrito() {
     });
 }
 $(document).on('click', '.btnEliminarCarrito', eliminarcarrito);
+
+
+function botonpaypal() {
+    var btn = $(this);
+    var paypal = $('#paypal').val();
+
+    $.ajax({
+        url: 'pago.php', 
+        type: 'POST',
+        data: {paypal : paypal}, // Agrega el valor del botón PayPal como parte de los datos
+        success: function(response) {
+            console.log(paypal);
+            // Oculta los elementos después de la respuesta AJAX
+           
+            $('#visa').hide();
+            $('#mastercard').hide(); 
+            $('#PAGOS').hide();           
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+$(document).on('click', '#paypal', botonpaypal);
+
+function botonvisa() {
+var btn = $(this);
+var visa = $(this).val();
+
+$.ajax({
+  url: 'pago.php', 
+        type: 'POST',
+        data: {visa: visa}, 
+        success: function(response) {
+            console.log(visa);
+            var paypal = $('#paypal').hide();
+            var master = $('#mastercard').hide();
+            var inputs = $('#PAGOS').show();            
+        }
+})
+}
+$(document).on('click', '#visa', botonvisa);
+
+function botonmastercard() {
+var btn = $(this);
+var mastercard = $(this).val();
+
+$.ajax({
+  url: 'pago.php', 
+        type: 'POST',
+        data: {mastercard: mastercard}, 
+        success: function(response) {
+            console.log(mastercard);
+            var paypal = $('#paypal').hide();
+            var visa = $('#visa').hide();
+            var inputs = $('#PAGOS').show();        
+        }
+})
+}
+$(document).on('click', '#mastercard', botonmastercard);
+
+function reiniciarbotones() {
+var btn = $(this);
+var reiniciarbotones = $(this).val();
+
+$.ajax({
+  url: 'pago.php', 
+        type: 'POST',
+        data: {reiniciarbotones: reiniciarbotones}, 
+        success: function(response) {
+            console.log(reiniciarbotones);
+            var paypal = $('#paypal').show();
+            var visa = $('#visa').show();      
+            var mastercard = $('#mastercard').show();
+            var inputs = $('#PAGOS').hide();            
+      
+        }
+})
+}
+$(document).on('click', '#reiniciarbotones', reiniciarbotones);
+
+
+function aplicarcupon(){
+    var cupon = $('#cupon').val();
+    var ids = []; // Array para almacenar los valores de data-id
+
+    // Iterar sobre cada elemento <tr> y obtener su valor de data-id
+    $('tr').each(function() {
+        var id = $(this).data('id'); // Obtener el valor de data-id para este <tr>
+        ids.push(id); // Agregar el valor al array ids
+    });
+
+   
+    
+    $.ajax({
+        url: 'cupon.php', 
+        type: 'POST',
+        data: {cupon: cupon,ids: ids}, 
+        success: function(response) {
+            console.log(response);
+            //si el validador de register.php (echo) devuelve el mensaje siguiente el usuario ya existe
+            if (response.includes("No Aplicado.")) {
+            Swal.fire({
+               icon: 'error',
+               title: 'Cupón no aplicado',
+               showConfirmButton: false,
+               timer: 1500
+           });
+          }
+          else if(response.includes("Aplicado.")) {
+            Swal.fire({
+               icon: 'success',
+               title: 'Cupón aplicado',
+               showConfirmButton: false,
+               timer: 1500
+           });
+          }
+          else{
+            Swal.fire({
+               icon: 'error',
+               title: 'Error al verificar la validez del cupón.',
+               showConfirmButton: false,
+               timer: 1500
+           });
+          }
+
+
+        }
+    });
+  }
+
+
+$(document).on('click', '#aplicarcupon', aplicarcupon);
+
+
+function procesarcompra(){
+  
+    $.ajax({
+      url: 'checkout.php', 
+        type: 'POST', 
+        data: {}, 
+        success: function(response) {
+            
+           $('#checkout').hide();
+           $('#procesarpago').show();
+        }
+        
+    });
+  }
+  
+$(document).on('click', '#procesarcompra', procesarcompra);
+
 
 </script>

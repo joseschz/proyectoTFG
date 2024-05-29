@@ -101,7 +101,7 @@
 							<h3>Enviar un correo</h3>
 							<form class="newsletter-box">
 								<div class="form-group">
-									<input class="" type="email" name="Email" placeholder="Email Address*" />
+									<input class="" type="email" name="Email" placeholder="Correo Electrónico*" />
 									<i class="fa fa-envelope"></i>
 								</div>
 								<button class="btn hvr-hover" type="submit">Aceptar</button>
@@ -133,12 +133,12 @@
                         <div class="footer-link">
                             <h4>Información</h4>
                             <ul>
-                                <li><a href="#"> About Us</a></li>
-                                <li><a href="#">  Customer Service</a></li>
-                                <li><a href="#"> Our Sitemap</a></li>
-                                <li><a href="#"> Terms &amp; Conditions</a></li>
-                                <li><a href="#"> Privacy Policy</a></li>
-                                <li><a href="#" >Delivery Information</a></li>
+                                <li><a href="sobrenosotros.php"> Sobre Nosotros</a></li>
+                                <li><a href="#"> Servicio al cliente</a></li>
+                                <li><a href="#"> Nuestra Localización</a></li>
+                                <li><a href="#"> Terminos &amp; Condiciones</a></li>
+                                <li><a href="#"> Politica y Privacidad</a></li>
+                                <li><a href="#" > Información del pedido</a></li>
                             </ul>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                                     <p><i class="fas fa-phone-square"></i>Teléfono: <a href="tel:652652652">652652652</a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:jsandur900@g.educaand.es">jsandur900@g.educaand.es</a></p>
                                 </li>
                             </ul>
                         </div>
@@ -183,6 +183,7 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+
 </body>
 
 </html>

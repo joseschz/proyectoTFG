@@ -7,6 +7,7 @@
    $id_conexion=-1;
    define("KEY","joseignacio"); //encriptacion
    define("COD","AES-128-ECB");
+   
 
    function conectar_BD() 
    {
@@ -35,6 +36,23 @@
 		}
 		return $resultado;
 	} 
+   function ejecuta_SQL_con_parametros($sql, $parametros) 
+{
+    global $id_conexion;
+
+    //preparar la consulta
+    $stmt = $id_conexion->prepare($sql);
+    //ejecuta la consulta con los parámetros
+    $resultado = $stmt->execute($parametros);
+    //verifica si la consulta se ejecutó 
+    if (!$resultado) {
+        echo "<H3>No se ha podido ejecutar la consulta: <PRE>$sql</PRE><P><U> Errores</U>: </H3><PRE>";
+        print_r($stmt->errorInfo());                    
+        die ("</PRE>");
+    }
+    return $stmt;
+}
+
   conectar_BD();
 
 // REGISTRAR

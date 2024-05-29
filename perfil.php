@@ -6,9 +6,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>My Account</h2>
+                    <h2>Mi Cuenta</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Tienda</a></li>
+                        <li class="breadcrumb-item"><a href="tienda.php">Tienda</a></li>
                         <li class="breadcrumb-item active">Mi Perfil</li>
                     </ul>
                 </div>
@@ -26,11 +26,11 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                                    <a href="perfil/mispedidos.php"> <i class="fa fa-gift"></i> </a>
                                 </div>
                                 <div class="service-desc">
                                     <h4>Mis Pedidos</h4>
-                                    <p>Track, return, or buy things again</p>
+                                    <p>Mira tu historial de pedidos que has realizado.</p>
                                 </div>
                             </div>
                         </div>
@@ -39,11 +39,11 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"><i class="fa fa-lock"></i> </a>
+                                    <a href="perfil/loginyseguridad.php"><i class="fa fa-lock"></i> </a>
                                 </div>
                                 <div class="service-desc">
                                     <h4>Login &amp; Seguridad</h4>
-                                    <p>Edit login, name, and mobile number</p>
+                                    <p>Edita tus datos personales.</p>
                                 </div>
                             </div>
                         </div>
@@ -52,53 +52,22 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-location-arrow"></i> </a>
+                                    <a href="perfil/direcciones.php"> <i class="fa fa-location-arrow"></i> </a>
                                 </div>
                                 <div class="service-desc">
                                     <h4>Mi dirección</h4>
-                                    <p>Edit addresses for orders and gifts</p>
+                                    <p>Edita tu dirección de facturación.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-credit-card"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Opciones de Pago</h4>
-                                    <p>Edit or add payment methods</p>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-paypal"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>PayPal</h4>
-                                    <p>View benefits and payment settings</p>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -106,5 +75,4 @@
             </div>
         </div>
     </div>
-    <!-- End My Account -->
 <?php include('footer.php'); ?>
