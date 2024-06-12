@@ -26,8 +26,6 @@ if(isset($_POST['cupon']) && isset($_POST['ids'])) {
        foreach ($resultado as $fila) {
         $numCupones = $fila['num_cupones'];
         $Rebaja = $fila['REBAJA'];
-
-
        }
         // Si el número de cupones encontrados es mayor que cero, el cupón es válido
         if ($numCupones > 0) {

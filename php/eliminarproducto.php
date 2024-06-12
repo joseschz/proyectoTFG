@@ -13,14 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $totaleliminado = $totaleliminado - ($elemento['precio'] * $elemento['cantidad']); 
                 
         echo "$numero_productos";  //Respondiendo a la solicitud AJAX
+        
             }
         }
-       
-        
-    
-
-
-       
+             
     }
    
 ?>

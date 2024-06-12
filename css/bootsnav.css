@@ -347,9 +347,9 @@ body{
 	transition: all 0.3s ease-in-out;
 }
 
-body.on-side{
+/* body.on-side{
     margin-left: -280px;
-}
+} */
 
 .side{
     position: fixed;
@@ -486,9 +486,9 @@ nav.navbar.bootsnav.no-background{
 	transition: all 0.2s ease-in-out;
 }
 
-body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
+/* body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     left: -280px;
-}
+} */
 
 nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:hover{
 	color: #d33b33;

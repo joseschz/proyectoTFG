@@ -142,12 +142,10 @@
                         <div class="footer-link">
                             <h4>Información</h4>
                             <ul>
+                                <li><a href="../contacto.php"> Contacta con Nosotros</a></li>
                                 <li><a href="../sobrenosotros.php"> Sobre Nosotros</a></li>
-                                <li><a href="#"> Servicio al cliente</a></li>
-                                <li><a href="#"> Nuestra Localización</a></li>
-                                <li><a href="#"> Terminos &amp; Condiciones</a></li>
-                                <li><a href="#"> Politica y Privacidad</a></li>
-                                <li><a href="#" > Información del pedido</a></li>
+                                <li><a href="../terminosycondiciones.php"> Términos &amp; Condiciones</a></li>
+                                <?php if(isset($_COOKIE['email'])){echo'<li><a href="mispedidos.php" > Mis pedidos</a></li>';} ?>
                             </ul>
                         </div>
                     </div>

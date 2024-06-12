@@ -30,7 +30,7 @@ if (is_array($datos)) {
             $id = $producto['id']; 
             $nombre = openssl_encrypt($producto['nombre'], COD, KEY); 
             $precio = openssl_encrypt($producto['precio'], COD, KEY); 
-            $cantidad = intval($producto['cantidad']);  // Convertir a entero
+            $cantidad = openssl_encrypt(intval($producto['cantidad']), COD, KEY);  // Convertir a entero
             
             // Obtener el stock actual del producto desde la tabla productos
             $consulta = "SELECT stock FROM productos WHERE ID_Producto = '$id'";
@@ -43,7 +43,7 @@ if (is_array($datos)) {
             $totalstock_str = strval($totalstock);
 
             // Inserto en la base de datos el detalle de los productos comprados 
-            $consulta = "INSERT INTO detalle_compra (id_cliente, id_producto, nombre, precio, cantidad) VALUES ('$id_cliente', '$id', '$nombre', '$precio', '$cantidad')";
+            $consulta = "INSERT INTO detalle_compra (id_cliente, id_producto, nombre, precio, cantidad,fecha) VALUES ('$id_cliente', '$id', '$nombre', '$precio', '$cantidad','$fecha_nueva')";
             $resultado = ejecuta_SQL($consulta);
 
             // Actualizar el stock del producto

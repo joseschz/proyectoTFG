@@ -12,12 +12,22 @@
     var primerapellido = $('#Firstnameregister').val();
     var segundoapellido = $('#Lastnameregister').val();
     var contraseña = $('#passwordregister').val();
+    var direccion = $('#direccionregister').val();
+    var cp = $('#cpregister').val();
+    var telefono = $('#telefonoregister').val();
    
-    
+    if(nombre.trim() == "" || email.trim() == "" || primerapellido.trim() == "" || segundoapellido.trim() == "" || contraseña.trim() == "" || direccion.trim() == "" || cp.trim() == "" || telefono.trim() == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Todos los campos son obligatorios!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }else{
     $.ajax({
         url: 'register.php', 
         type: 'POST',
-        data: {nombre: nombre, email: email, primerapellido: primerapellido, segundoapellido: segundoapellido,contraseña:contraseña}, 
+        data: {nombre: nombre, email: email, primerapellido: primerapellido, segundoapellido: segundoapellido,contraseña:contraseña,direccion:direccion,cp:cp,telefono:telefono}, 
         success: function(response) {
             console.log(response);
             //si el validador de register.php (echo) devuelve el mensaje siguiente el usuario ya existe
@@ -40,7 +50,7 @@
         }
     });
   }
-
+  }
 
 $(document).on('click', '#btnRegistrar', register);
 
@@ -128,118 +138,42 @@ function agregarcarrito() {
     });
 }
 
-$(document).on('click', '.btnAgregarCarrito', agregarcarrito);
+$(document).on('click', '#btnAgregarCarrito', agregarcarrito);
 
 function eliminarcarrito() {
-  var btn = $(this);  
-  var id = btn.data('id');
-  var tr = $(this);  
-  var ideliminar = tr.data('ideliminar');
-  var totalEliminado = $('#totalEliminado').val();
-
-  
+    var btn = $(this);
+    var id = btn.data('id');
+    var tr = $(this);
+    var ideliminar = tr.data('ideliminar');
+    var totalEliminado = $('#totalEliminado').val();
     
+
     $.ajax({
-        url: 'php/eliminarproducto.php', 
+        url: 'php/eliminarproducto.php',
         type: 'POST',
-        data: {id: id,totalEliminado:totalEliminado}, 
+        data: {id: id, totalEliminado: totalEliminado},
         success: function(response) {
             console.log(response);
             var totalEliminado = response.totalEliminado;
-            $('#contadorCarrito').text(response); 
+            $('#contadorCarrito').text(response);
             $('tr[data-id="' + id + '"]').hide();
             $('#resultadoCarrito').text(totalEliminado);
-          Swal.fire({
-               icon: 'success',
-               title: 'Producto eliminado del carrito',
-               showConfirmButton: false,
-               timer: 1500
-           })
+            Swal.fire({
+                icon: 'success',
+                title: 'Producto eliminado del carrito',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(function() {
+                // Verificar si totalEliminado es 0 y reiniciar la página si es así
+                if (response == 0) {
+                    location.reload();
+                }
+            });
         }
     });
 }
+
 $(document).on('click', '.btnEliminarCarrito', eliminarcarrito);
-
-
-function botonpaypal() {
-    var btn = $(this);
-    var paypal = $('#paypal').val();
-
-    $.ajax({
-        url: 'pago.php', 
-        type: 'POST',
-        data: {paypal : paypal}, // Agrega el valor del botón PayPal como parte de los datos
-        success: function(response) {
-            console.log(paypal);
-            // Oculta los elementos después de la respuesta AJAX
-           
-            $('#visa').hide();
-            $('#mastercard').hide(); 
-            $('#PAGOS').hide();           
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-}
-
-$(document).on('click', '#paypal', botonpaypal);
-
-function botonvisa() {
-var btn = $(this);
-var visa = $(this).val();
-
-$.ajax({
-  url: 'pago.php', 
-        type: 'POST',
-        data: {visa: visa}, 
-        success: function(response) {
-            console.log(visa);
-            var paypal = $('#paypal').hide();
-            var master = $('#mastercard').hide();
-            var inputs = $('#PAGOS').show();            
-        }
-})
-}
-$(document).on('click', '#visa', botonvisa);
-
-function botonmastercard() {
-var btn = $(this);
-var mastercard = $(this).val();
-
-$.ajax({
-  url: 'pago.php', 
-        type: 'POST',
-        data: {mastercard: mastercard}, 
-        success: function(response) {
-            console.log(mastercard);
-            var paypal = $('#paypal').hide();
-            var visa = $('#visa').hide();
-            var inputs = $('#PAGOS').show();        
-        }
-})
-}
-$(document).on('click', '#mastercard', botonmastercard);
-
-function reiniciarbotones() {
-var btn = $(this);
-var reiniciarbotones = $(this).val();
-
-$.ajax({
-  url: 'pago.php', 
-        type: 'POST',
-        data: {reiniciarbotones: reiniciarbotones}, 
-        success: function(response) {
-            console.log(reiniciarbotones);
-            var paypal = $('#paypal').show();
-            var visa = $('#visa').show();      
-            var mastercard = $('#mastercard').show();
-            var inputs = $('#PAGOS').hide();            
-      
-        }
-})
-}
-$(document).on('click', '#reiniciarbotones', reiniciarbotones);
 
 
 function aplicarcupon(){

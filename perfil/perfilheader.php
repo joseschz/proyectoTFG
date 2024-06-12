@@ -101,7 +101,7 @@ session_start();
                 <div class="attr-nav">
                     <ul>
                         <li class="side-menu" >
-							<a href="#">
+							<a href="../carrito.php">
 								<i class="fa fa-shopping-bag"></i>
                                 <!--Bibliografia2  https://www.youtube.com/watch?v=rqYhZGskLfI&list=PLSuKjujFoGJ0XF_Gv0VpiTHxAtO7LL8jl&index=12 -->
 								<span class="badge" id="contadorCarrito"><?php  echo(empty($_SESSION['carro'])) ? 0 : count($_SESSION['carro']) ?></span>
@@ -112,39 +112,39 @@ session_start();
                 </div>
             </div>
   <!-- Carrito desplegable derecha -->
-            <div class="side">
+            <!-- <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
                 <li class="cart-box">
                     <ul class="cart-list">
                     <?php 
                     
-                    if(!empty($_SESSION['carro'])){
-                        $total = 0;
-                        foreach ($_SESSION['carro'] as $indice => $producto){
-                            echo '<li>
-                                    <img src="../images/'.$producto['imagen'].'" class="cart-thumb" alt="" />
-                                    <h6><a href="#">'.$producto['nombre'].'</a></h6>
-                                    <p>'.$producto['cantidad'].'x - <span class="price">'.$producto['precio'].'€</span></p>
-                                </li>';
-                        }
+                    // if(!empty($_SESSION['carro'])){
+                    //     $total = 0;
+                    //     foreach ($_SESSION['carro'] as $indice => $producto){
+                    //         echo '<li>
+                    //                 <img src="../images/'.$producto['imagen'].'" class="cart-thumb" alt="" />
+                    //                 <h6><a href="#">'.$producto['nombre'].'</a></h6>
+                    //                 <p>'.$producto['cantidad'].'x - <span class="price">'.$producto['precio'].'€</span></p>
+                    //             </li>';
+                    //     }
 
-                    }
+                    // }
                 
 ?>
 
                     </ul>
                 </li>
-            </div>
+            </div> -->
         </nav>
     </header>
     <!-- buscador pagina principal -->
-    <div class="top-search">
+    <!-- <div class="top-search">
         <div class="container">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-search"></i></span>
                 <input type="text" class="form-control" placeholder="Search">
                 <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
             </div>
-        </div>
+        </div> -->
     </div>
     

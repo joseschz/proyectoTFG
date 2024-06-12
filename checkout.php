@@ -62,8 +62,8 @@
                     <div class="title-left">
                         <h3>Crear Nueva Cuenta</h3>
                     </div>
-                    <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false">Click aquí para Registrarte</a></h5>
-                   <form autocomplete="off" id="formRegister">
+                    <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false" >Click aquí para Registrarte</a></h5>
+                   <form autocomplete="off" id="formRegister" class="collapse">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="name" class="mb-0">Nombre</label>
@@ -80,6 +80,15 @@
                             <div class="form-group col-md-6">
                                 <label for="InputPassword1" class="mb-0">Contraseña</label>
                                 <input type="password" class="form-control" id="passwordregister" placeholder="Contraseña"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="Direccion" class="mb-0">Dirección</label>
+                                <input type="text" class="form-control" id="direccionregister" placeholder="Dirección"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="cp" class="mb-0">CP</label>
+                                <input type="text" class="form-control" id="cpregister" placeholder="Contraseña"> </div>
+                            <div class="form-group col-md-6">
+                                <label for="cp" class="mb-0">Teléfono</label>
+                                <input type="text" class="form-control" id="telefonoregister" placeholder="Teléfono"> </div>
                         </div>
                         <input type="button" id="btnRegistrar" class="btn login_btn" VALUE="Aceptar">
                     </form>
@@ -135,7 +144,7 @@
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="telefono">Teléfono *</label>
-                                    <input type="number" class="form-control" max="10" id="Telf" name="Telf" placeholder="Telf" value="<?php if(isset($telefono)){echo$telefono;}?>" required>
+                                    <input type="text" class="form-control" id="Telf" name="Telf" placeholder="Telf" value="<?php if(isset($telefono)){echo$telefono;}?>" required>
                                 </div>
                             </div>
                    
@@ -221,16 +230,46 @@ foreach ($_SESSION['carro'] as $indice => $producto){
                                         </div>';
                                 }
                                 ?>
-                                <?php if(isset($_SESSION['Rebaja'])) {
-                                    $rebaja = $_SESSION['Rebaja']; 
-                                    $total= $total - $rebaja;
-                                echo'<hr class="my-1">
+                            
+                            <?php
+                            // Simula el array de productos en el carrito desde la sesión
+                            $carrito = isset($_SESSION['carro']) ? $_SESSION['carro'] : [];
 
-                                <div class="d-flex">
-                                    <h4>Cupón de Descuento</h4>
-                                    <div class="ml-auto font-weight-bold">' .$rebaja .' € </div>
-                                </div>';
-                            }?>
+                            // Consulta para obtener los ID de productos para el cupón
+                            $consulta = "SELECT ID_Producto FROM cupones";
+                            $resultado = ejecuta_SQL($consulta);
+
+                            // Inicializa el total del carrito
+                            $total = 0;
+                            foreach ($carrito as $producto) {
+                                $total += $producto['precio'];
+                            }
+
+                            // Verifica si hay una rebaja en sesión
+                            if (isset($_SESSION['Rebaja'])) {
+                                $rebaja = $_SESSION['Rebaja'];
+                                $descuento_aplicado = false;
+                                
+                                foreach ($resultado as $row) {
+                                    foreach ($carrito as $producto) {
+                                        if ($producto['id'] == $row['ID_Producto']) {
+                                            $total -= $rebaja;
+                                            echo '<hr class="my-1">
+                                                <div class="d-flex">
+                                                    <h4>Cupón de Descuento</h4>
+                                                    <div class="ml-auto font-weight-bold">' . $rebaja . ' €</div>
+                                                </div>';
+                                            $descuento_aplicado = true;
+                                            break; // Sale del bucle interno si ya se aplicó el descuento
+                                        }
+                                    }
+                                    if ($descuento_aplicado) {
+                                        break; // Sale del bucle externo si ya se aplicó el descuento
+                                    }
+                                }
+                            }
+
+?>
                                 <hr class="my-1">
                                 <div class="d-flex">
                                     <h4>Envío</h4>
@@ -242,15 +281,17 @@ foreach ($_SESSION['carro'] as $indice => $producto){
                                     <div class="ml-auto h5"><?php echo "$total"; ?> €</div>
                                 </div>
                                 <hr> </div>
-                        </div></div></div> </div>
+                        </div></div></div> </div></div>
                         <div class="col-12 d-flex shopping-box">
                         <!-- <input type="submit" name="btnenviar" value="Enviar"> -->
                         <div id="paypal-button-container" style="width: 300px;margin: 0 auto;text-align: center;"></div></div></div></div>
                         <script src="https://www.paypal.com/sdk/js?client-id=Ab_WDUdUhB2KTLx1v15CrE3u5IBI_S3dYkxyFp3lCYcKNjhd6oAsGVWGNA-uX1fHifFsfS4WrFgAbhdv&currency=EUR"></script>
 
-                        <script>
+                        <?php if(isset($_COOKIE['email'])){?><script>
 
 //bibliografia https://www.youtube.com/watch?v=nAz8xRQaPZQ
+        //sb-xpjng29589890@personal.example.com
+        //3nTB:>k^
         paypal.Buttons({
     style: {
         color: 'blue',
@@ -267,7 +308,9 @@ foreach ($_SESSION['carro'] as $indice => $producto){
         });
     },
     onApprove: function(data, actions) {
+        //inserto en la bd el pedido capturado en el carrito
         var url = 'completado/completado.php';
+      
         return actions.order.capture().then(function(detalles) {
             // Obtener los valores de los campos del formulario
             var nombre = document.getElementById('Nombre').value;
@@ -288,14 +331,14 @@ foreach ($_SESSION['carro'] as $indice => $producto){
             console.log(detalles);
             //lo mando a completado.php en formato json 
             return fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    detalles: detalles
-                })
-            });
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                detalles: detalles
+            })
+        });
         }).then(function(response) {
             if (response.ok) {
                 Swal.fire({
@@ -303,7 +346,9 @@ foreach ($_SESSION['carro'] as $indice => $producto){
                     title: 'Pago Completado',
                     showConfirmButton: false,
                     timer: 1500
-                });
+                }).then(function() {
+            window.location.href = 'detallefinalcompra.php'; // Reemplaza con la URL deseada
+        });
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -332,4 +377,7 @@ foreach ($_SESSION['carro'] as $indice => $producto){
 
 
 </script>
+<?php }else
+{
+    echo "<div ><p style='text-align: center; font-size: 22px;color:black;border-radius: 10px; background-color: #f0f0f0'>Inicia sesión para realizar el pago de tu compra.</p><br><br></div>";}?>
 <?php include('footer.php'); ?> 

@@ -6,6 +6,15 @@
                 <?php
                 require_once('funciones.php');
                $ID_Producto = $_GET['id'];
+               $email = $_COOKIE['email'];
+               $consulta = "SELECT * FROM usuarios WHERE email = '$email'"; //hago esto para guardar despues en reseña
+               $resultado = ejecuta_SQL($consulta);
+               foreach ($resultado as $row){
+                   $id = $row['id'];
+               }
+               echo"<input type='hidden' id='id' value='$id'>";
+               echo"<input type='hidden' id='idproducto' value='$ID_Producto'>";
+
                $consulta ="SELECT * FROM productos WHERE ID_Producto = $ID_Producto";
                $resultado = ejecuta_SQL($consulta);
                foreach ($resultado as $row){
@@ -34,7 +43,7 @@
 						
                         ';
                         //Lo que hago aqui es copiar el boton de tienda.php y como la funcion la tengo definida en script.php pues unicamente tengo que pasarle los mismos valores de el producto
-						echo'<button class="cart btnAgregarCarrito" style="background-color: #3581b4;color: white;" data-id="'.openssl_encrypt($ID_Producto, COD, KEY).'" data-nombre="'.openssl_encrypt($nombre, COD, KEY).'" data-precio="'.openssl_encrypt($precio, COD, KEY).'" data-imagen="'.openssl_encrypt($imagen, COD, KEY).'" data-cantidad="'.openssl_encrypt(1, COD, KEY).'" type="button">Añadir al carrito</button>
+						echo'<button class="cart" id="btnAgregarCarrito" style="background-color: #3581b4;color: white;" data-id="'.openssl_encrypt($ID_Producto, COD, KEY).'" data-nombre="'.openssl_encrypt($nombre, COD, KEY).'" data-precio="'.openssl_encrypt($precio, COD, KEY).'" data-imagen="'.openssl_encrypt($imagen, COD, KEY).'" data-cantidad="'.openssl_encrypt(1, COD, KEY).'" type="button">Añadir al carrito</button>
 
 
 						<div class="add-to-btn">
@@ -59,7 +68,7 @@
                         </div>
                         <div class="media-body">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                            <small class="text-muted">Posted by Anonymous on 3/1/18</small>
+                            <small class="text-muted">Posted by Anonymous on 2024/03/1/</small>
                         </div>
                     </div>
                     <hr>
@@ -137,11 +146,32 @@
         </div>';
 		?>
 
-
-			
-
-           
-
         </div>
     </div>
-<?php include('footer.php'); ?>
+<?php include_once('footer.php'); ?>
+<script>
+
+function AnadirReseña(){
+        var mensaje = $("#mensaje").val();
+        var valoracion = $("#valoracion").val();
+        var id = $("#id").val();
+        var idproducto = $("#idproducto").val();
+    $.ajax({
+        url: 'añadirreseña.php',
+        type: 'POST',
+        data: {mensaje: mensaje, valoracion: valoracion, id: id,idproducto:idproducto },
+        success: function (response) {
+            if(response.includes("ok")){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Reseña anadida.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            console.log(response);
+            }
+        });
+    }
+
+</script>

@@ -18,7 +18,7 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php 
-                      $consulta ="SELECT * FROM compra WHERE id_cliente = '$encriptado'";
+                      $consulta ="SELECT * FROM compra WHERE id_cliente = '$encriptado' ORDER BY fecha DESC";
                       $resultado = ejecuta_SQL($consulta);
                       foreach($resultado as $row){
                       echo"<tr>";

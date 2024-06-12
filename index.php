@@ -97,9 +97,12 @@
                 <div class="col-lg-3 col-md-6 special-grid best-seller">
                     <div class="products-single fix">
                         <div class="box-img-hover">
+                        <div class="type-lb">
+                                <p class="sale">Venta</p>
+                            </div>
                             <img src="images/globos2.jpeg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
-                                <a class="cart" href="tienda.php">Ver productos</a>
+                            <button class="cart" onclick="window.location.href='tienda.php'">Ver productos</button>
                             </div>
                         </div>
                         <div class="why-text">
@@ -112,12 +115,12 @@
                 <div class="col-lg-3 col-md-6 special-grid top-featured">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="new">Venta</p>
+                        <div class="type-lb">
+                                <p class="sale">Venta</p>
                             </div>
                             <img src="images/arco2.jpeg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
-                            <a class="cart" href="tienda.php">Ver productos</a>
+                            <button class="cart" onclick="window.location.href='tienda.php'">Ver productos</button>
                             </div>
                         </div>
                         <div class="why-text">
@@ -135,7 +138,7 @@
                             </div>
                             <img src="images/globos1.jpeg" class="img-fluid">
                             <div class="mask-icon">
-                            <a class="cart" href="tienda.php">Ver productos</a>
+                            <button class="cart" onclick="window.location.href='tienda.php'">Ver productos</button>
                             </div>
                         </div>
                         <div class="why-text">
@@ -153,7 +156,7 @@
                             </div>
                             <img src="images/dulces1.jpeg" class="img-fluid" alt="Image" width="210px">
                             <div class="mask-icon">
-                                <a class="cart" href="tienda.php">Ver productos</a>
+                            <button class="cart" onclick="window.location.href='tienda.php'">Ver productos</button>
                             </div>
                         </div>
                         <div class="why-text">
@@ -187,7 +190,7 @@
                                 <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -203,7 +206,7 @@
                                 <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -219,7 +222,7 @@
                                 <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
                             </div>
                             <ul class="option-blog">
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a></li>
 
                             </ul>
                         </div>

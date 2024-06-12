@@ -1,11 +1,11 @@
 
-    <div class="instagram-box">
+    <div class="instagram-box" >
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/publicacion.jpeg" alt="" />
+                    <img src="images/publicacion.jpeg" alt=""  />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram" target="_blank"></i></a>
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion1.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion2.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion3.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion4.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion5.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion6.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion7.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion8.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="ins-inner-box">
                     <img src="images/publicacion9.jpeg" alt="" />
                     <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -111,11 +111,11 @@
 					<div class="col-lg-4 col-md-12 col-sm-12">
 						<div class="footer-top-box">
 							<h3>Redes Sociales</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<p>Visita nuestras redes sociales para ver las ultimas publicaciones.</p>
 							<ul>
                                 <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.instagram.com/" target="_blank"> <i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/dulces.y.eventos/" target="_blank"> <i class="fab fa-instagram" aria-hidden="true"></i></a></li>
                             </ul>
 						</div>
 					</div>
@@ -133,12 +133,10 @@
                         <div class="footer-link">
                             <h4>Información</h4>
                             <ul>
+                                <li><a href="contacto.php"> Contacta con Nosotros</a></li>
                                 <li><a href="sobrenosotros.php"> Sobre Nosotros</a></li>
-                                <li><a href="#"> Servicio al cliente</a></li>
-                                <li><a href="#"> Nuestra Localización</a></li>
-                                <li><a href="#"> Terminos &amp; Condiciones</a></li>
-                                <li><a href="#"> Politica y Privacidad</a></li>
-                                <li><a href="#" > Información del pedido</a></li>
+                                <li><a href="terminosycondiciones.php"> Términos &amp; Condiciones</a></li>
+                                <?php if(isset($_COOKIE['email'])){echo'<li><a href="perfil/mispedidos.php" > Mis pedidos</a></li>';} ?>
                             </ul>
                         </div>
                     </div>
@@ -181,7 +179,6 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/baguetteBox.min.js"></script>
     <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
 
 </body>

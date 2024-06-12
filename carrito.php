@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Cart</h2>
+                <h2>Carrito</h2>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="tienda.php">Tienda</a></li>
                     <li class="breadcrumb-item active">Carrito</li>
@@ -26,12 +26,11 @@ if(!empty($_SESSION['carro'])){
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Imagen</th>
-                                    <th>Nombre de Producto</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                    <th>Eliminar</th>
+                                    <th style="text-align: center;">Imagen</th>
+                                    <th style="text-align: center;">Nombre de Producto</th>
+                                    <th style="text-align: center;">Precio</th>
+                                    <th style="text-align: center;">Cantidad</th>
+                                    <th style="text-align: center;">Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>';
@@ -42,30 +41,23 @@ if(!empty($_SESSION['carro'])){
         echo '
                                 
                                 <tr data-id="'.openssl_encrypt($producto['id'],COD,KEY).'"> 
-                                    <td class="thumbnail-img">
+                                    <td class="thumbnail-img" style="text-align: center;">
                                         <a href="#">
                                             <img class="img-fluid" src="images/'.$producto['imagen'].'" alt="" />
                                         </a>
                                     </td>
-                                    <td class="name-pr">
+                                    <td class="name-pr" style="text-align: center;">
                                         <a href="#">'.$producto['nombre'].'</a>
                                     </td>
-                                    <td class="price-pr">
+                                    <td class="price-pr" style="text-align: center;">
                                         <p>'.$producto['precio'].'</p>
                                     </td>
                                     <form method="post" >
-                                    <td class="quantity-box">
-                                    
+                                    <td class="quantity-box" style="text-align: center;">
                                             <input type="number" name="nuevacantidad" size="4" value="'.$producto['cantidad'].'" min="1" step="1" class="c-input-text qty text" data-id="'. openssl_encrypt($producto['id'],COD,KEY) .'"  />
                                     </td>
-
-                                    
-                                    <td class="remove-pr">
-
-                                    <button class="cart btnEliminarCarrito" 
-                                     data-id="'.openssl_encrypt($producto['id'],COD,KEY).'"
-                                     type="button" ><i class="fas fa-times"></i></button>
-                                        
+                                    <td class="remove-pr" style="text-align: center;">
+                                        <button class="cart btnEliminarCarrito" data-id="'.openssl_encrypt($producto['id'],COD,KEY).'" type="button" ><i class="fas fa-times"></i></button>
                                     </td>
                                     </form>
                                 </tr>';
@@ -89,7 +81,7 @@ if(!empty($_SESSION['carro'])){
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio" value="3.50">
                                         <label class="custom-control-label" for="shippingOption1">Envío estandar</label> <span class="float-right font-weight-bold">3.50€</span> </div>
-                                    <div class="ml-4 mb-2 small">(3-7 días laborales)</div>
+                                    <div class="ml-4 mb-2 small">(5-7 días laborales)</div>
                                     <div class="custom-control custom-radio">
                                         <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio" value="5.00">
                                         <label class="custom-control-label" for="shippingOption2">SEUR</label> <span class="float-right font-weight-bold">5.00€</span> </div>
@@ -139,15 +131,15 @@ if(!empty($_SESSION['carro'])){
                                 </div>
                                 
                             </div>
+                            
                         </div>
+                        
                     </div>
+                    <div class="col-12 d-flex shopping-box"><input class="ml-auto btn hvr-hover" type="submit" style="color:white;" value="Enviar"></div>
                 </div>
             </div>
+            </div>                
             </div>
-           
-                
-            </div>
-                <div class="col-12 d-flex shopping-box"><input class="ml-auto btn hvr-hover" type="submit"  value="Enviar"></div>
             </div>
             </form>
         </div>
@@ -155,12 +147,11 @@ if(!empty($_SESSION['carro'])){
      
            
 } else {
-    echo '
-    <div class="alert alert-success">
+    echo '<div class="alert alert-success">
         No hay productos en el carrito
     </div>';
 }
-include('footer.php');
+include_once('footer.php');
 ?>
 
 <script>

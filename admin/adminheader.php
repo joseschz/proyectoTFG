@@ -120,7 +120,7 @@ if(isset($_COOKIE['email'])) {
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="clientes.php" class="menu-link" >
+                  <a href="adminclientes.php" class="menu-link" >
                     <div id="Clientes">Clientes</div>
                   </a>
                 </li>
@@ -158,16 +158,26 @@ if(isset($_COOKIE['email'])) {
                     <div id="PedidosClientes">Ver Pedidos de Clientes</div>
                   </a>
                 </li>
-                
-                
               </ul>
             </li>
-          
-            <!-- Components -->
-     
-            <!-- User interface -->
-            
-
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+                <div id="Administracion">Cupones</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="admincupones.php" class="menu-link" >
+                    <div id="Pedidos">Ver Cupones</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="adminregistrarcupones.php" class="menu-link" >
+                    <div id="PedidosClientes">Registrar Cupón</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
         </aside>
         <!-- / Menu -->
 
@@ -186,20 +196,7 @@ if(isset($_COOKIE['email'])) {
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                  />
-                </div>
-              </div>
-              <!-- Buscador -->
-
+              
               <ul class="navbar-nav flex-row align-items-center ms-auto">
 
                 <!-- <li class="nav-item lh-1 me-3">
@@ -236,21 +233,6 @@ if(isset($_COOKIE['email'])) {
                       <a class="dropdown-item" href="cuenta.php">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">Mi Perfil</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
                       </a>
                     </li>
                     <li>

@@ -12,13 +12,13 @@
                         <th style="color:black;font-size:14px;">Fecha</th>
                         <th style="color:black;font-size:14px;">Estado</th>
                         <th style="color:black;font-size:14px;">Email</th>
-                        <th style="color:black;font-size:14px;">ID_Cliente</th>
+                        <th style="color:black;font-size:14px;">Cliente</th>
                         <th style="color:black;font-size:14px;">Total</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php 
-                      $consulta ="SELECT * FROM compra";
+                      $consulta ="SELECT * FROM compra ORDER BY fecha DESC";
                       $resultado = ejecuta_SQL($consulta);
                       foreach($resultado as $row){
                       echo"<tr>";

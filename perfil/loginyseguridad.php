@@ -28,7 +28,7 @@ foreach($resultado as $row){
                       <div class="form-password-toggle">
                         <label class="form-label" for="basic-default-password12">Contraseña</label>
                         <div class="input-group">
-                          <input type="text" class="form-control" id="password" placeholder="Contraseña" aria-describedby="basic-default-password12"
+                          <input type="password" class="form-control" id="password" placeholder="Contraseña" aria-describedby="basic-default-password12"
                             value="<?php echo $contraseña;?>"
                           />
                           

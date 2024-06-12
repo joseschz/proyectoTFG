@@ -1,64 +1,54 @@
 <?php include("adminheader.php")?> 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Productos</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span> Clientes</h4>
 <div class="card">
-                <h5 class="card-header">Número de Productos (<?php $consulta="SELECT COUNT(*) FROM productos AS total"; $resultado = ejecuta_SQL($consulta); foreach($resultado as $row) echo "<strong style='color:green;'>".$row[0]."</strong>";?>)</h5>
+                <h5 class="card-header">Número de Clientes (<?php $consulta="SELECT COUNT(*) FROM usuarios AS total"; $resultado = ejecuta_SQL($consulta); foreach($resultado as $row) echo "<strong style='color:green;'>".$row[0]."</strong>";?>)</h5>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th style="color:black;font-size:14px;">ID</th>
+                        <th style="color:black;font-size:14px;">Rol</th>
+                        <th style="color:black;font-size:14px;">Email</th>
                         <th style="color:black;font-size:14px;">Nombre</th>
-                        <th style="color:black;font-size:14px;">Precio</th>
-                        <th style="color:black;font-size:14px;">Descripción</th>
-                        <th style="color:black;font-size:14px;">Imagen</th>
-                        <th style="color:black;font-size:14px;">Stock</th>
-                        <th style="color:black;font-size:14px;">Valor</th>
+                        <th style="color:black;font-size:14px;">Primer Apellido</th>
+                        <th style="color:black;font-size:14px;">Segundo Apellido</th>
                         <th style="color:black;font-size:14px;">Acción</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php 
-                      $consulta ="SELECT * FROM productos";
+                      $consulta ="SELECT * FROM usuarios";
                       $resultado = ejecuta_SQL($consulta);
                       foreach($resultado as $row){
-                        $id=$row[0];
                       echo"<tr data-id='".$row[0]."'>";
-                        echo"<td style='color:purple;'>
-                          <strong>".$row[0]."</strong>
-                        </td>
-                        <td>
-                          <input type='text' id='nombre' data-nombre='".$row[1]."' value='".$row[1]."' style='color:green;border:none;' />
+                        echo"
+                            <td>
+                            <select id='rol' style='border:none;'data-rol='".$row[1]."'>
+                              <option value='".$row[1]."'>". $row[1]. "</option>";
+                        echo "<option value='[ROLE_ADMIN]'>Administrador</option>
+                              <option value='[ROLE_USER]'>Usuario</option>
+                            </select>
+                            </td>
+                            <td>
+                              <input type='text' id='email' data-email='".$row[3]."' value='".$row[3]."' style='color:blue;border:none;' />
+                            </td>
+                            <td>
+                                <input type='text' id='nombre' data-nombre='".$row[2]."' value='".$row[2]."' style='color:purple;border:none;' />
+                            </td>
+                            <td>
+                                <input type='text' id='primerap' data-primerap='".$row[5]."' value='".$row[5]."' style='color:purple;border:none;' />
+                            </td>
+                            <td>
+                                <input type='text' id='segundoap' data-segundoap='".$row[6]."' value='".$row[6]."' style='color:purple;border:none;' />
                           </td>
-                        <td>
-                        <input type='text' id='precio' data-precio='".$row[2]."' value='".$row[2]."' style='color:blue;border:none;' />
-                        </td>
-                        <td>
-                        <input type='text' id='descripcion' data-descripcion='".$row[3]."' value='".$row[3]."' style='color:purple;border:none;' />
-                        </td>
-                        <td><img class='d-block w-100' src='../images/" . $row[4] . "' alt='Producto' height='60' width='50' ></td>                        
-                        <td style='color:green;'>
-                        <input type='text' id='stock' data-stock='".$row[5]."' value='".$row[5]."' style='color:green;border:none;' />
-                        </td>
-                        <td>
-                        ";
-                        $consulta = "SELECT Orden FROM productos GROUP BY Orden";
-                        $resultado = ejecuta_SQL($consulta);
-                        echo"<select id='orden' style='border:none;'>";
-                        echo"<option value='".$row[6]."'>".$row[6]."</option>";
-                        foreach($resultado as $row){
-                          echo"<option value='".$row[0]."'>".$row[0]."</option>";
-                        }
-                        echo"</select>
-                        </td>
                         <td>
                           <div class='dropdown'>
                             <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
                               <i class='bx bx-dots-vertical-rounded'></i>
                             </button>
                             <div class='dropdown-menu'>
-                              <a class='dropdown-item' href='javascript:void(0);' data-id='".$id."' id='editarproducto'><i class='bx bx-edit-alt me-1'></i> Editar</a>
-                              <a class='dropdown-item' href='javascript:void(0);' data-id='".$id."' id='borrarproducto'><i class='bx bx-trash me-1'></i> Borrar</a>
+                              <a class='dropdown-item' href='javascript:void(0);' data-id='".$row[0]."' id='editarcliente'><i class='bx bx-edit-alt me-1'></i> Editar</a>
+                              <a class='dropdown-item' href='javascript:void(0);' data-id='".$row[0]."' id='borrarcliente'><i class='bx bx-trash me-1'></i> Borrar</a>
                             </div>
                           </div>
                         </td>";
@@ -69,19 +59,23 @@
                   </table>
                 </div>
               </div>
-                      </div>
-<?php include("adminfooter.php")?> 
+            </div>                
+          </div>
+        </div>
+        </div>
+        </div>
+<?php include_once("adminfooter.php")?> 
 <script>
-function EditarProducto() {
+function EditarUsuario() {
         var a = $(this);
         var id = a.data('id');
         //se utiliza para encontrar el elemento antecesor más cercano que es una fila de tabla (tr)
         // Esto es necesario porque los campos de entrada se encuentran dentro de la misma fila de la tabla que el botón de edición.
         var nombre = $(this).closest('tr').find('input#nombre').val();
-        var precio = $(this).closest('tr').find('input#precio').val();
-        var descripcion = $(this).closest('tr').find('input#descripcion').val();
-        var stock = $(this).closest('tr').find('input#stock').val();
-        var orden = $(this).closest('tr').find('select#orden').val();
+        var email = $(this).closest('tr').find('input#email').val();
+        var primerap = $(this).closest('tr').find('input#primerap').val();
+        var segundoap = $(this).closest('tr').find('input#segundoap').val();
+        var rol = $(this).closest('tr').find('select#rol').val();
 
         Swal.fire({
             title: '¿Estás seguro?',
@@ -95,14 +89,14 @@ function EditarProducto() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: 'editarproducto.php',
+                    url: 'editarcliente.php',
                     type: 'POST',
-                    data: { id: id, nombre: nombre, precio: precio,descripcion:descripcion,stock:stock,orden:orden },
+                    data: { id: id, rol:rol,email:email,nombre:nombre,primerap:primerap,segundoap:segundoap },
                     success: function(response) {
                         if(response.includes("ok")){
                         Swal.fire({
                             icon: 'success',
-                            title: 'Producto editado.',
+                            title: 'Usuario editado.',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -110,7 +104,7 @@ function EditarProducto() {
                     else if(response.includes("No se actualizaron los datos")){
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error al editar el producto.',
+                            title: 'Error al editar el usuario.',
                             text: 'Por favor, inténtalo de nuevo más tarde.'
                         });
                     }
@@ -119,7 +113,7 @@ function EditarProducto() {
                         console.error(xhr.responseText);
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error al editar el producto.',
+                            title: 'Error al editar el usuario.',
                             text: 'Por favor, inténtalo de nuevo más tarde.'
                         });
                     }
@@ -128,9 +122,8 @@ function EditarProducto() {
         });
     }
 
-    $(document).on('click', '#editarproducto', EditarProducto);
-
-    function EliminarProducto() {
+    $(document).on('click', '#editarcliente', EditarUsuario);
+    function EliminarUsuario() {
         var a = $(this);
         var id = a.data('id');
         Swal.fire({
@@ -145,7 +138,7 @@ function EditarProducto() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: 'eliminarproducto.php',
+                    url: 'eliminarcliente.php',
                     type: 'POST',
                     data: { id: id },
                     success: function(response) {
@@ -153,7 +146,7 @@ function EditarProducto() {
                         $('tr[data-id="' + id + '"]').hide();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Producto eliminado.',
+                            title: 'Usuario eliminado.',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -161,7 +154,7 @@ function EditarProducto() {
                     else if(response.includes("No se ha borrado, hubo un error")){
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error al eliminar el producto.',
+                            title: 'Error al eliminar el usuario.',
                             text: 'Por favor, inténtalo de nuevo más tarde.'
                         });
                     }
@@ -170,7 +163,7 @@ function EditarProducto() {
                         console.error(xhr.responseText);
                         Swal.fire({
                             icon: 'error',
-                            title: 'Error al eliminar el producto.',
+                            title: 'Error al eliminar el usuario.',
                             text: 'Por favor, inténtalo de nuevo más tarde.'
                         });
                     }
@@ -179,5 +172,5 @@ function EditarProducto() {
         });
     }
 
-    $(document).on('click', '#borrarproducto', EliminarProducto);
+    $(document).on('click', '#borrarcliente', EliminarUsuario);
 </script>

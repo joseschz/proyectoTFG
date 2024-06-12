@@ -8,16 +8,18 @@
                     <thead>
                       <tr>
                         <th style="color:black;font-size:14px;">ID</th>
-                        <th style="color:black;font-size:14px;">ID_Transacción</th>
+                        <th style="color:black;font-size:14px;">Email</th>
                         <th style="color:black;font-size:14px;">ID_Producto</th>
                         <th style="color:black;font-size:14px;">Nombre</th>
                         <th style="color:black;font-size:14px;">Precio</th>
                         <th style="color:black;font-size:14px;">Cantidad</th>
+                        <th style="color:black;font-size:14px;">Fecha</th>
+
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <?php 
-                      $consulta ="SELECT * FROM detalle_compra";
+                      $consulta ="SELECT * FROM detalle_compra ORDER BY fecha DESC";
                       $resultado = ejecuta_SQL($consulta);
                       foreach($resultado as $row){
                       echo"<tr>";
@@ -27,7 +29,7 @@
                         <td style='color:green;'>".openssl_decrypt($row[3],COD,KEY)."</td>
                         <td style='color:blue;'> ". openssl_decrypt($row[4],COD,KEY) ."</td>
                         <td style='color:purple;'>".openssl_decrypt($row[5],COD,KEY)."</td>
-                        
+                        <td style='color:#16B182;'>".$row[6]."</td>
                          
                         </td>";
                       echo"</tr>";}
